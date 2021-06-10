@@ -1,0 +1,19 @@
+{
+  "name": "quiz-money-game",
+  "version": "1.0.0",
+  "description": "A game in which you answer questions, and make money, and then you can purchase money and xp boosters",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "quiz",
+    "gk",
+    "money"
+  ],
+  "author": "Shabbar Saifee",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
