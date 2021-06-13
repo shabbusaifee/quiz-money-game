@@ -132,11 +132,11 @@ app.post('/sign_up', urlencodedParser, async (req, res)=>{
         profile: {
             coins: 0,
             streak: 0,
-            level: 0,
+            level: 1,
             reqxp: 1,
             currentxp: 0,
             xpBooster: 1,
-            permanentxpbooster: 1,
+            permanentxpbooster: 0,
             moneyBooster: 1,
             boostersBought: 0
         }
@@ -162,4 +162,26 @@ app.post('/sign_out', (req, res)=>{
     SIGNED_IN = false;
     res.clearCookie("id")
     res.redirect('/')
+})
+
+function profileValidationCookie(req, res, next){
+    let {cookies} = req;
+        User.findOne({"id": cookies.id}).exec()
+        .then(result=>{
+            res.render('profile', {personName: result.name, personEmail: result.email, personCoins: person.profile.coins,
+                 personLevel: person.profile.Level, personMoneyBooster: person.profile.moneyBooster, personXpBooster: person.profile.xpBooster})
+            SIGNED_IN = true;
+            return;
+        
+        })
+        .catch(err=>{
+            console.log("An error occured while using the cookie, error: ")
+            console.log(err)
+            next();
+        })
+}
+
+app.get("/profile", profileValidationCookie, (req, res)=>{
+    // res.render("/profile")
+    res.status(404).render("sign_up")
 })

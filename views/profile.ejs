@@ -35,15 +35,27 @@
 
     <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;" id="backgroundImg">
 
-    <h1>Become The Richest</h1>
+    <h1>Your Profile</h1>
 
-    <div id="ifNotSignedIn" style="position: relative;bottom: -60vh;">
-        <button onclick="window.location= '/sign_up'">Sign Up</button>
-        <button onclick='window.location = "/sign_in"'>Sign In</button>
+    <div id="ifNotSignedIn" style="position: relative;bottom: -70vh;">
+        <!-- <button onclick="window.location= '/sign_up'">Sign Up</button>
+        <button onclick='window.location = "/sign_in"'>Sign In</button> -->
     </div>
 
     <div class="ifSignedIn" style="position: relative;bottom: -60vh;">
-        <button onclick="window.location = '/start'">Start</button>
+
+        <h1>Your Information</h1>
+        <h2>Your Name: <%= personName %></h2>
+        <h2>Your Email: <%= personEmail %></h2>
+        <br>
+        <br>
+
+        <h1>Your Bank Account</h1>
+        <h2>Coins: <%= personCoins %>₿</h2>
+        <h2>Level: <%= personLevel %></h2>
+        <h2>XP Booster: <%= personXpBooster %></h2>
+        <h2>Money Booster: <%= personMoneyBooster %></h2>
+
     </div>
     
     <div class="ifSignedIn">
@@ -71,9 +83,10 @@
             ifSignedIn[0].style.display = "block";
             ifSignedIn[1].style.display = "block";
         }else if (signedIn !== true) {
-            signInOptions.style.display = "block";
-            ifSignedIn[0].style.display = "none";
-            ifSignedIn[1].style.display = "none";
+            window.location = "/";
+            // signInOptions.style.display = "block";
+            // ifSignedIn[0].style.display = "none";
+            // ifSignedIn[1].style.display = "none";
         }
 
         backgroundImg.setAttribute("width", window.innerWidth);
