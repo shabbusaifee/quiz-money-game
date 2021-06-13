@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="388493634506-iar05f460sjmrto9dbd7271c76eu8ks4.apps.googleusercontent.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Become The Richest</title>
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon">
+
+    <style>
+        h1 {
+            position: relative;
+            top: 10vh;
+            font-size: 10vh;
+            font-weight: 1000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;"
+        id="backgroundImg">
+
+    <h1>Sign Out</h1>
+
+    <form action="/sign_out" method="post">
+    <div>
+        <button type="submit" style="position: relative;top: 40vh;font-weight: 900;color: white;cursor: pointer;" href="#" onclick="signOut();">Sign out</button>
+    </div>
+    </form>
+
+    <script>
+        let backgroundImg = document.getElementById("backgroundImg");
+
+        backgroundImg.setAttribute("width", window.innerWidth);
+        backgroundImg.setAttribute("height", window.innerHeight);
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

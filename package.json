@@ -4,7 +4,8 @@
   "description": "A game in which you answer questions, and make money, and then you can purchase money and xp boosters",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [
     "quiz",
@@ -14,6 +15,24 @@
   "author": "Shabbar Saifee",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "array-sort": "^1.0.0",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "favicon": "0.0.2",
+    "mongoose": "^5.12.13",
+    "nodemailer": "^6.6.1",
+    "otp-generator": "^2.0.1",
+    "request": "^2.88.2",
+    "serve-favicon": "^2.5.0",
+    "sort-array": "^4.1.4",
+    "uniqid": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

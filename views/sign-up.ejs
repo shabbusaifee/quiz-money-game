@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="388493634506-iar05f460sjmrto9dbd7271c76eu8ks4.apps.googleusercontent.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Become The Richest</title>
+    <link rel="stylesheet" href="../style/fontawesome-free-5.15.3-web/css/all.css">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon">
+
+    <style>
+        h1 {
+            position: relative;
+            top: 10vh;
+            font-size: 10vh;
+            font-weight: 1000;
+        }
+
+        /* .password{
+             position: absolute;
+            /* left: 0.6vw; 
+            z-index: 0;
+        }
+        .cpassword{
+            position: absolute;
+            top: 4vw;
+            z-index: 0;
+        } */
+        i{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 100000000000;
+        }
+
+        #dp{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;"
+        id="backgroundImg">
+
+    <h1>Sign Up</h1>
+
+    <form action="/sign_up" method="post" style="display: flex;flex-direction: column;position: relative;bottom: -50vh;align-items: center;">
+
+        <input type="text" name="name" required placeholder="Name">
+        <input type="email" name="email" required placeholder="Email">
+        <input type="text" id="dp" name="avatarUrl">
+        <div style="display: flex;justify-content: center;"><input class="password" type="password" name="password" required placeholder="Password" autocomplete="off"><div style="position: relative;"><i class="fa fa-eye"></i></div></div>
+        <div style="display: flex;justify-content: center;"><input class="cpassword" type="password" name="confirm-password" required placeholder="Confirm Password" autocomplete="off"><div style="position: relative"><i class="fa fa-eye"></i></div></div>
+
+        <button type="submit" id="submit-btn">Submit</button>
+        <br>
+        <br>
+        <br>
+
+    <div>   
+         <div class="g-signin2" data-onsuccess="onSignIn"></div></h3>
+    </form>
+
+
+    <script>
+        let backgroundImg = document.getElementById("backgroundImg");
+        let submitBtn = document.getElementById("submit-btn")
+        let input = document.getElementsByTagName("input")
+        let i = document.getElementsByTagName("i")
+
+
+        if(input[0].value)
+
+        backgroundImg.setAttribute("width", window.innerWidth);
+        backgroundImg.setAttribute("height", window.innerHeight);
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            input[0].value = profile.getName();
+            input[1].value = profile.getEmail();
+            // input[2].value = profile.getImageUrl();
+        }
+
+        let showing = false;
+        i[0].addEventListener("click", ()=>{
+
+            if(!showing){
+                input[3].setAttribute("type", "text")
+                i[0].style.color = "#0084ff";
+                showing = true;
+            }else{
+                input[3].setAttribute("type", "password")
+                i[0].style.color = "white";
+                showing = false;
+            }
+
+        })
+
+        let showing1 = false;
+            i[1].addEventListener("click", () => {
+
+                if (!showing1) {
+                    input[4].setAttribute("type", "text")
+                    i[1].style.color = "#0084ff";
+                    showing1 = true;
+                } else {
+                    input[4].setAttribute("type", "password")
+                    i[1].style.color = "white";
+                    showing1 = false;
+                }
+
+            })
+
+        submitBtn.addEventListener("click", e=>{
+            if(input[3].value !== input[4].value){
+                e.preventDefault();
+                alert("Passwords Do Not Match!!!")
+            }else if(input[3].value.length <= 3){
+                e.preventDefault();
+                alert("Password Must be MORE then 3 Characters!!!")
+            }else{
+                return;
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
