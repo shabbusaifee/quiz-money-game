@@ -168,8 +168,8 @@ function profileValidationCookie(req, res, next){
     let {cookies} = req;
         User.findOne({"id": cookies.id}).exec()
         .then(result=>{
-            res.render('profile', {personName: result.name, personEmail: result.email, personCoins: person.profile.coins,
-                 personLevel: person.profile.Level, personMoneyBooster: person.profile.moneyBooster, personXpBooster: person.profile.xpBooster})
+            res.render('profile', {personName: result.name, personAvatar: result.avatarUrl, personEmail: result.email, personCoins: result.profile.coins,
+                 personLevel: result.profile.level, personMoneyBooster: result.profile.moneyBooster, personXpBooster: result.profile.xpBooster})
             SIGNED_IN = true;
             return;
         
@@ -183,5 +183,5 @@ function profileValidationCookie(req, res, next){
 
 app.get("/profile", profileValidationCookie, (req, res)=>{
     // res.render("/profile")
-    res.status(404).render("sign_up")
+    res.status(404).redirect("/")
 })

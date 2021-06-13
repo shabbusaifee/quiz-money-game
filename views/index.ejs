@@ -14,6 +14,7 @@
             top: 10vh;
             font-size: 10vh;
             font-weight: 1000;
+            z-index: -100000;
         }
 
         #avatar{
@@ -21,6 +22,8 @@
             position: absolute;
             right: 1.5vw;
             top: 1.5vw;
+            cursor: pointer;
+            z-index: 1;
         }
         #personName{
             position: absolute;
@@ -50,7 +53,7 @@
         <img id="avatar" width="50" height="50" onclick="window.location = '/profile'">
     </div>
 
-    <h1 id="avatarLink" style="display: none;"><%= personAvatar %></h1>
+    <h1 id="avatarLink" style="display: none;"onclick="window.location = '/profile'"><%= personAvatar %></h1>
 
     <!-- <div id="signedIn" style="display: none;"><%= personName %></div> -->
     <script>
