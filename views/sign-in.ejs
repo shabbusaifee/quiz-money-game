@@ -24,8 +24,13 @@
 
 <body>
 
-    <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;"
-        id="backgroundImg">
+    <!-- <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;"
+        id="backgroundImg"> -->
+        <a href="/"
+      ><button style="position: absolute; left: 0; top: 0">
+        <label class="fa fa-home"></label>
+      </button>
+    </a>
 
     <h1>Sign In</h1>
 
@@ -38,15 +43,15 @@
             <div><input style="position: relative;left: 9px;" type="password" name="password" placeholder="Password" id="signInPass" required><i class="fa fa-eye" style="position: relative;right: 1vw;"></i></div>
         <button type="submit">Sign In</button>
         <div style="display: flex;justify-content: center;" class="g-signin2" data-onsuccess="onSignIn"></div>
-        <h2>Already have an account? <a href="/sign_in">Sign In</a></h2>
+        <h2>Don't have an account? <a href="/sign_up">Sign Up</a></h2>
         <!-- </div> -->
     </form>
 
     <script>
         let backgroundImg = document.getElementById("backgroundImg");
 
-        backgroundImg.setAttribute("width", window.innerWidth);
-        backgroundImg.setAttribute("height", window.innerHeight);
+        // backgroundImg.setAttribute("width", window.innerWidth);
+        // backgroundImg.setAttribute("height", window.innerHeight);
 
         let input = document.getElementsByTagName("input")
         let i = document.getElementsByTagName("i")

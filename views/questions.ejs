@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Become The Richest</title>
+    <link
+      rel="stylesheet"
+      href="../style/fontawesome-free-5.15.3-web/css/all.css"
+    />
+    <link rel="stylesheet" href="../style/main.css" />
+    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon" />
+
+    <style>
+      h1 {
+        position: relative;
+        top: 10vh;
+        font-size: 6vh;
+        font-weight: 1000;
+        z-index: -100000;
+      }
+
+      #avatar {
+        border-radius: 50%;
+        position: absolute;
+        right: 1.5vw;
+        top: 1.5vw;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      #personName {
+        position: absolute;
+        top: 0vh;
+        right: 0vh;
+        font-size: 2.5vh;
+        font-weight: bolder;
+      }
+
+      .radio__label {
+        display: inline-table;
+        cursor: pointer;
+        position: relative;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 40px;
+        background: white;
+        color: purple;
+        border-radius: 10%;
+        transition: 0.1s ease;
+        border: 5px black;
+        animation-name: radio;
+        animation-duration: 100ms;
+        margin-top: 2vh;
+      }
+
+      .radio__label:hover {
+        background-color: grey;
+      }
+
+      .radio:checked + .radio__label {
+        background-color: purple;
+        color: white;
+      }
+
+      .radio {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <img
+      src="../img/background.gif"
+      style="position: fixed; left: 0; top: 0; height: 100vh; width: 100vw"
+      id="backgroundImg"
+    /> -->
+    <a href="/"
+      ><button style="position: absolute; left: 0; top: 0">
+        <i class="fa fa-home"></i>
+      </button>
+    </a>
+    <h1>Question!!</h1>
+
+    <div id="ifNotSignedIn" style="position: relative; bottom: -60vh">
+      <!-- <button onclick="window.location= '/sign_up'">Sign Up</button>
+        <button onclick='window.location = "/sign_in"'>Sign In</button> -->
+    </div>
+
+    <div class="ifSignedIn" style="position: relative; bottom: -60vh">
+      <!-- <button onclick="window.location = '/start'"></button> -->
+    </div>
+
+    <form style="position: relative; top: 25vh" action="/play" method="POST">
+      <h2
+        id="question"
+        style="position: relative; top: -5vh; z-index: -10000"
+      ></h2>
+      <!-- <input type="radio" name="answer"> -->
+
+      <label style="display: none" id="questionValue"><%= question %></label>
+
+      <br />
+      <input
+        id="box1"
+        type="radio"
+        required
+        name="answer"
+        value="choice1"
+        class="radio"
+        placeholder=""
+        style="z-index: 1"
+      />
+      <label style="z-index: 1" id="1" for="box1" class="radio__label"> </label>
+      <br />
+      <input
+        id="box2"
+        type="radio"
+        required
+        name="answer"
+        value="choice2"
+        placeholder=""
+        class="radio"
+      />
+      <label id="2" for="box2" class="radio__label"> </label>
+      <br />
+      <input
+        id="box3"
+        type="radio"
+        required
+        name="answer"
+        value="choice3"
+        placeholder=""
+        class="radio"
+      />
+      <label id="3" for="box3" class="radio__label"> </label>
+      <br />
+      <input
+        id="box4"
+        type="radio"
+        required
+        name="answer"
+        value="choice4"
+        placeholder=""
+        class="radio"
+      />
+      <label id="4" for="box4" class="radio__label"> </label>
+      <br />
+      <br />
+      <label id="questionIdRecieved" style="display: none"
+        ><%= questionId %></label
+      >
+      <input
+        type="text"
+        name="questionId"
+        id="questionId"
+        style="display: none"
+      />
+      <button
+        id="submitBtn"
+        type="Submit"
+        style="position: relative; left: 1vw"
+      >
+        Check <i class="fa fa-arrow-right"></i>
+      </button>
+    </form>
+
+    <div style="display: none">
+      <label class="choiceValue"> <%= choice1 %> </label>
+      <label class="choiceValue"> <%= choice2 %> </label>
+      <label class="choiceValue"> <%= choice3 %> </label>
+      <label class="choiceValue"> <%= choice4 %> </label>
+    </div>
+
+    <div class="ifSignedIn">
+      <img
+        id="avatar"
+        width="50"
+        height="50"
+        onclick="window.location = '/profile'"
+      />
+    </div>
+
+    <h1
+      id="avatarLink"
+      style="display: none"
+      onclick="window.location = '/profile'"
+    >
+      <%= personAvatar %>
+    </h1>
+
+    <div style="display: none"></div>
+
+    <!-- <div id="signedIn" style="display: none;"><%= personName %></div> -->
+    <script>
+      console.log(document.getElementById("questionIdRecieved"));
+      document.getElementById("questionId").value =
+        document.getElementById("questionIdRecieved").innerText;
+      let choice1 = document.getElementById("1");
+      let choice2 = document.getElementById("2");
+      let choice3 = document.getElementById("3");
+      let choice4 = document.getElementById("4");
+      let question = document.getElementById("question");
+
+      let submitBtn = document.getElementById("submitBtn");
+
+      let questionValue = document.getElementById("questionValue");
+      let choiceValue = document.getElementsByClassName("choiceValue");
+
+      for (i = 0; i < choiceValue.length; i++) {
+        console.log(choiceValue[i]);
+      }
+
+      choice1.innerHTML = choiceValue[0].innerText;
+      choice2.innerHTML = choiceValue[1].innerText;
+      choice3.innerHTML = choiceValue[2].innerText;
+      choice4.innerHTML = choiceValue[3].innerText;
+      question.innerHTML = questionValue.innerText;
+
+      let backgroundImg = document.getElementById("backgroundImg");
+      let signInOptions = document.getElementById("ifNotSignedIn");
+      let ifSignedIn = document.getElementsByClassName("ifSignedIn");
+
+      let avatar = document.getElementById("avatar");
+
+      avatar.setAttribute(
+        "src",
+        document.getElementById("avatarLink").innerHTML
+      );
+      // avatar.setAttribute("width", window.innerWidth/30)
+      // avatar.setAttribute("height", window.innerWidth / 30)
+
+      let signedIn = document.getElementById("avatarLink").innerHTML.length > 0;
+
+      if (signedIn === true) {
+        signInOptions.style.display = "none";
+        ifSignedIn[0].style.display = "block";
+        ifSignedIn[1].style.display = "block";
+      } else if (signedIn !== true) {
+        window.location("/");
+        // signInOptions.style.display = "block";
+        // ifSignedIn[0].style.display = "none";
+        // ifSignedIn[1].style.display = "none";
+      }
+
+      // backgroundImg.setAttribute("width", window.innerWidth);
+      // backgroundImg.setAttribute("height", window.innerHeight);
+    </script>
+  </body>
+</html>

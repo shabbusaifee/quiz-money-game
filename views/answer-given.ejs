@@ -28,50 +28,56 @@
   </head>
 
   <body>
-    <!-- <img
-      src="../img/background.gif"
-      style="position: fixed; left: 0; top: 0; height: 100vh; width: 100vw"
-      id="backgroundImg"
-    /> -->
+    <!-- 
+    <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;"
+        id="backgroundImg"> -->
     <a href="/"
       ><button style="position: absolute; left: 0; top: 0">
-        <i class="fa fa-home"></i>
+        <label class="fa fa-home"></label>
       </button>
     </a>
 
-    <h1>Sign Out</h1>
+    <% if(answerStatus){ %>
+    <h1>Correct Answer!!</h1>
 
-    <form action="/sign_out" method="post">
-      <div>
-        <button
-          type="submit"
-          style="
-            position: relative;
-            top: 40vh;
-            font-weight: 900;
-            color: white;
-            cursor: pointer;
-          "
-          href="#"
-          onclick="signOut();"
+    <div style="position: relative; top: 15vh">
+      <h2>You Earn <%= moneyEarned %></h2>
+      <h2>Your Streak has increased</h2>
+      <% if(leveledUp){ %>
+      <h2>
+        You Leveled up, your level is now
+        <label style="color: rgb(255, 0, 255); font-weight: bold"
+          ><%= level %></label
         >
-          Sign out
-        </button>
-      </div>
-    </form>
+      </h2>
+      <% } %>
+    </div>
 
+    <div>
+      <button
+        onclick="window.location = '/start'"
+        style="position: relative; bottom: -60vh"
+      >
+        Next Question
+      </button>
+    </div>
+    <% }else{ %>
+    <h1>Wrong Answer!!!</h1>
+    <div, style="position: relative;top: 15vh;">
+      <h2>Don't worry, try again</h2>
+      <h2>Your Streak Has ENDED!!!</h2>
+    </div>
+
+    <button onclick="window.location = '/start'">Next Question</button>
+
+    <% } %>
     <script>
       let backgroundImg = document.getElementById("backgroundImg");
 
       // backgroundImg.setAttribute("width", window.innerWidth);
       // backgroundImg.setAttribute("height", window.innerHeight);
 
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log("User signed out.");
-        });
-      }
+      let input = document.getElementsByTagName("input");
     </script>
   </body>
 </html>

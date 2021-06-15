@@ -1,88 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Become The Richest</title>
-    <link rel="stylesheet" href="../style/main.css">
-    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="../style/fontawesome-free-5.15.3-web/css/all.css"
+    />
+    <link rel="stylesheet" href="../style/main.css" />
+    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon" />
 
     <style>
-        h1{
-            position: relative;
-            top: 10vh;
-            font-size: 10vh;
-            font-weight: 1000;
-            z-index: -100000;
-        }
+      h1 {
+        position: relative;
+        top: 10vh;
+        font-size: 10vh;
+        font-weight: 1000;
+        z-index: -100000;
+      }
 
-        #avatar{
-            border-radius: 50%;
-            position: absolute;
-            right: 1.5vw;
-            top: 1.5vw;
-            cursor: pointer;
-            z-index: 1;
-        }
-        #personName{
-            position: absolute;
-            top: 0vh;
-            right: 0vh;
-            font-size: 2.5vh;
-            font-weight: bolder;
-        }
+      #avatar {
+        border-radius: 50%;
+        position: absolute;
+        right: 1.5vw;
+        top: 1.5vw;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #personName {
+        position: absolute;
+        top: 0vh;
+        right: 0vh;
+        font-size: 2.5vh;
+        font-weight: bolder;
+      }
     </style>
-</head>
-<body>
-
-    <img src="../img/background.gif" style="position: fixed;left: 0;top: 0;height: 100vh;width: 100vw;" id="backgroundImg">
+  </head>
+  <body>
+    <!-- <img
+      src="../img/background.gif"
+      style="position: fixed; left: 0; top: 0; height: 100vh; width: 100vw"
+      id="backgroundImg"
+    /> -->
 
     <h1>Become The Richest</h1>
 
-    <div id="ifNotSignedIn" style="position: relative;bottom: -60vh;">
-        <button onclick="window.location= '/sign_up'">Sign Up</button>
-        <button onclick='window.location = "/sign_in"'>Sign In</button>
+    <div id="ifNotSignedIn" style="position: relative; bottom: -60vh">
+      <button onclick="window.location= '/sign_up'">Sign Up</button>
+      <button onclick='window.location = "/sign_in"'>Sign In</button>
     </div>
 
-    <div class="ifSignedIn" style="position: relative;bottom: -60vh;">
-        <button onclick="window.location = '/start'">Start</button>
+    <div class="ifSignedIn" style="position: relative; bottom: -60vh">
+      <button onclick="window.location = '/start'">Start</button>
     </div>
-    
+
     <div class="ifSignedIn">
-        <img id="avatar" width="50" height="50" onclick="window.location = '/profile'">
+      <img
+        id="avatar"
+        width="50"
+        height="50"
+        onclick="window.location = '/profile'"
+      />
     </div>
 
-    <h1 id="avatarLink" style="display: none;"onclick="window.location = '/profile'"><%= personAvatar %></h1>
+    <h1
+      id="avatarLink"
+      style="display: none"
+      onclick="window.location = '/profile'"
+    >
+      <%= personAvatar %>
+    </h1>
 
     <!-- <div id="signedIn" style="display: none;"><%= personName %></div> -->
     <script>
-        let backgroundImg = document.getElementById("backgroundImg");
-        let signInOptions = document.getElementById("ifNotSignedIn")
-        let ifSignedIn = document.getElementsByClassName("ifSignedIn")
+      let backgroundImg = document.getElementById("backgroundImg");
+      let signInOptions = document.getElementById("ifNotSignedIn");
+      let ifSignedIn = document.getElementsByClassName("ifSignedIn");
 
-        let avatar = document.getElementById("avatar")
+      let avatar = document.getElementById("avatar");
 
-        avatar.setAttribute("src", document.getElementById("avatarLink").innerHTML)
-        // avatar.setAttribute("width", window.innerWidth/30)
-        // avatar.setAttribute("height", window.innerWidth / 30)
-        
-        let signedIn = document.getElementById("avatarLink").innerHTML.length > 0;
+      avatar.setAttribute(
+        "src",
+        document.getElementById("avatarLink").innerHTML
+      );
+      // avatar.setAttribute("width", window.innerWidth/30)
+      // avatar.setAttribute("height", window.innerWidth / 30)
 
-        if(signedIn === true){
-            signInOptions.style.display = "none";
-            ifSignedIn[0].style.display = "block";
-            ifSignedIn[1].style.display = "block";
-        }else if (signedIn !== true) {
-            signInOptions.style.display = "block";
-            ifSignedIn[0].style.display = "none";
-            ifSignedIn[1].style.display = "none";
-        }
+      let signedIn = document
+        .getElementById("avatarLink")
+        .innerText.includes(".");
 
-        backgroundImg.setAttribute("width", window.innerWidth);
-        backgroundImg.setAttribute("height", window.innerHeight);
+      if (signedIn === true) {
+        signInOptions.style.display = "none";
+        ifSignedIn[0].style.display = "block";
+        ifSignedIn[1].style.display = "block";
+      } else if (signedIn !== true) {
+        signInOptions.style.display = "block";
+        ifSignedIn[0].style.display = "none";
+        ifSignedIn[1].style.display = "none";
+      }
 
+      // backgroundImg.setAttribute("width", window.innerWidth);
+      // backgroundImg.setAttribute("height", window.innerHeight);
     </script>
-
-</body>
+  </body>
 </html>
