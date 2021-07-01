@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../img/cash.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="../style/main.css" />
+    <style>
+      h1 {
+        position: relative;
+        top: 10vh;
+        font-size: 10vh;
+        font-weight: 1000;
+        z-index: -100000;
+      }
+
+      #avatar {
+        border-radius: 50%;
+        position: absolute;
+        right: 1.5vw;
+        top: 1.5vw;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #personName {
+        position: absolute;
+        top: 0vh;
+        right: 0vh;
+        font-size: 2.5vh;
+        font-weight: bolder;
+      }
+    </style>
+    <title>Become The Richest</title>
+  </head>
+  <body>
+    <h1>Become The Richest</h1>
+
+    <div style="display: flex">
+      <h2>Money Boosters</h2>
+    </div>
+
+    <div class="ifSignedIn">
+      <img
+        id="avatar"
+        width="50"
+        height="50"
+        onclick="window.location = '/profile'"
+      />
+    </div>
+
+    <h1
+      id="avatarLink"
+      style="display: none"
+      onclick="window.location = '/profile'"
+    >
+      <%= personAvatar %>
+    </h1>
+
+    <script>
+      avatar.setAttribute(
+        "src",
+        document.getElementById("avatarLink").innerHTML
+      );
+    </script>
+  </body>
+</html>

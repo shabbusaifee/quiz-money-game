@@ -18,6 +18,7 @@ const fetch = require("node-fetch");
 const questionsAsked = [];
 const rn = require("random");
 const ejslint = require("ejs-lint");
+const expressLayouts = require("express-ejs-layouts");
 
 // questions.init();
 // console.log(arraySort([3, 4, 5, 1, 2, 8, 9, 6, 7, 10, 127391892, 1212112312, 2131213123, 4345233242]))
@@ -25,12 +26,13 @@ const ejslint = require("ejs-lint");
 const defaultAvatarUrl =
   "https://usercontent.one/wp/adtpest.com/wp-content/uploads/2018/08/default-avatar.jpg";
 
+// app.use(expressLayouts);
 app.use(cookieParser());
 
 const HOSTNAME = "0.0.0.0";
 const PORT = process.env.PORT || 3000;
 const URI =
-  "mongodb+srv://Shabbar:Shabbar52@userinfologinsystem.fimrz.mongodb.net/Users?retryWrites=true&w=majority";
+  "mongodb+srv://BecomeTheRichestSite:Shabbar52@userinfologinsystem.fimrz.mongodb.net/Users?retryWrites=true&w=majority";
 
 let SIGNED_IN = false;
 
@@ -56,6 +58,7 @@ function signInValidationCookie(req, res, next) {
   User.findOne({ id: cookies.id })
     .exec()
     .then((result) => {
+      if (!result) return next();
       res.render("index", {
         personName: result.name,
         personAvatar: result.avatarUrl,
@@ -188,6 +191,7 @@ function profileValidationCookie(req, res, next) {
   User.findOne({ id: cookies.id })
     .exec()
     .then((result) => {
+      if (!result) return next();
       res.render("profile", {
         personName: result.name,
         personAvatar: result.avatarUrl,
@@ -218,6 +222,7 @@ function questionsValidationCookie(req, res, next) {
   User.findOne({ id: cookies.id })
     .exec()
     .then((result) => {
+      if (!result) return next();
       fetch(
         "https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple"
       )
@@ -434,3 +439,30 @@ app.post("/play", urlencodedParser, (req, res) => {
     }
   }
 });
+
+function shopValidation(req, res, next) {
+  let { cookies } = req;
+  User.findOne({ id: cookies.id })
+    .exec()
+    .then((result) => {
+      if (!result) return next();
+      res.render("shop", {
+        personName: result.name,
+        personAvatar: result.avatarUrl,
+      });
+      SIGNED_IN = true;
+      return;
+    })
+    .catch((err) => {
+      SIGNED_IN = false;
+      console.log("An error occured while using the cookie, error: ");
+      console.log(err);
+      next();
+    });
+}
+
+app.get("/shop", shopValidation, (req, res) => {
+  res.render("shop");
+});
+
+app.post("/shop", urlencodedParser, (req, res) => {});
